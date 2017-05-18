@@ -1,0 +1,1343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "xhtml11.dtd">
+       <html xmlns="http://www.w3.org/1999/xhtml"
+             xml:lang="en"><head><meta name="author" content="Created with Quandary by Half-Baked Software, registered to Jason Rhode."></meta><meta name="keywords" content="Quandary, Hot Potatoes, Half-Baked Software, Windows, University of Victoria"></meta>
+<script language="JavaScript" src="../../tracking_scripts.js" type="text/javascript" ></script>
+
+<!-- This is the core XHTML code which is used to build the exercise page. -->
+
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" />
+<meta name="DC:Creator" content="Jason Rhode" />
+<meta name="DC:Title" content="Case 5" />
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
+
+<title>
+Case 5
+</title>
+
+<!-- Made with executable version 2.2 Release 0 Build 2 -->
+
+<style type="text/css">
+
+
+/* This is the CSS stylesheet used in the exercise. */
+/* Elements in square brackets are replaced by data based on configuration settings when the exercise is built. */
+
+
+body{
+	font-family: Geneva,Arial,sans-serif;
+	background-color: #ffffff;
+	color: #000000;
+ 
+	margin-right: 5%;
+	margin-left: 5%;
+	font-size: small;
+}
+
+p{
+	text-align: left;
+	margin: 0px;
+}
+
+div,span,td{
+	color: #000000;
+}
+
+div.Titles{
+	padding: 0.5em;
+	text-align: center;
+	color: #000000;
+}
+
+button{
+	display: inline;
+	font-size: 100%; /* Required to make IE scale button caption text size! */
+}
+
+.ExerciseTitle{
+	font-size: 140%;
+	color: #000000;
+}
+
+div#Timer{
+	padding: 0.3em;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+span#TimerText{
+	padding: 0.3em;
+	border-width: 1px;
+	border-style: solid;
+	font-weight: bold;
+	display: none;
+}
+
+div.ControlButtons{
+	text-align: center;
+}
+
+.Instructions{
+	margin-top: 1em;
+}
+
+.DecisionPointTitle{
+
+}
+
+.DecisionPointText{
+	text-align: left;
+	margin: auto;
+}
+
+td#AssetDisplay{
+	display: none;
+}
+
+div.Assets{
+	margin: 20px;
+}
+
+table.AssetTable{
+	border-width: 3px;
+	border-style: double;
+	border-color: #000000;
+	padding: 0.3em;
+}
+
+table.AssetTable th{
+	background-color: #000000;
+	color: #ffffff;
+	padding: 0.3em;
+}
+
+div.LinkList{
+	margin-top: 10px;
+}
+
+table.LinkTable{
+	margin-left: auto;
+	margin-right: auto;
+	text-align: left;
+}
+
+.FeedbackText{
+	color: #000000;
+}
+
+table.DPTable{
+	margin-left: auto;
+	margin-right: auto;
+	border-width: 0px;
+	padding: 10px;
+	vertical-align: top;
+}
+
+div.Feedback {
+	background-color: #ffffff;
+	left: 33%;
+	width: 34%;
+	top: 33%;
+	z-index: 1;
+	border-style: solid;
+	border-width: 1px;
+	padding: 5px;
+	text-align: center;
+	color: #000000;
+	position: absolute;
+	display: none;
+}
+
+div.DecisionPoint{
+	background-color: #ffffff;
+	text-align: center;
+	color: #000000;
+	padding: 0.5em;
+	border-style: solid;
+	border-width: 1px 1px 1px 1px;
+	border-color: #000000;
+	margin: 1px;
+}
+
+.FuncButton {
+	text-align: center;
+	border-style: solid;
+
+	border-left-color: #ffffff;
+	border-top-color: #ffffff;
+	border-right-color: #7f7f7f;
+	border-bottom-color: #7f7f7f;
+	color: #000000;
+	background-color: #ffffff;
+
+	border-width: 2px;
+	padding: 3px 6px 3px 6px;
+	cursor: pointer;
+}
+
+.FuncButtonUp {
+	color: #ffffff;
+	text-align: center;
+	border-style: solid;
+
+	border-left-color: #ffffff;
+	border-top-color: #ffffff;
+	border-right-color: #7f7f7f;
+	border-bottom-color: #7f7f7f;
+
+	background-color: #000000;
+	color: #ffffff;
+	border-width: 2px;
+	padding: 3px 6px 3px 6px;
+	cursor: pointer;
+}
+
+.FuncButtonDown {
+	color: #ffffff;
+	text-align: center;
+	border-style: solid;
+
+	border-left-color: #7f7f7f;
+	border-top-color: #7f7f7f;
+	border-right-color: #ffffff;
+	border-bottom-color: #ffffff;
+	background-color: #000000;
+	color: #ffffff;
+
+	border-width: 2px;
+	padding: 3px 6px 3px 6px;
+	cursor: pointer;
+}
+
+/*BeginNavBarStyle*/
+
+div.NavButtonBar{
+	background-color: #053A63;
+	text-align: center;
+	margin: 2px 0px 2px 0px;
+	clear: both;
+}
+
+.NavButton {
+	border-style: solid;
+	
+	border-left-color: #829cb1;
+	border-top-color: #829cb1;
+	border-right-color: #021d31;
+	border-bottom-color: #021d31;
+	background-color: #053A63;
+	color: #ffffff;
+
+	border-width: 2px;
+	cursor: pointer;	
+}
+
+.NavButtonUp {
+	border-style: solid;
+
+	border-left-color: #829cb1;
+	border-top-color: #829cb1;
+	border-right-color: #021d31;
+	border-bottom-color: #021d31;
+	color: #053A63;
+	background-color: #ffffff;
+
+	border-width: 2px;
+	cursor: pointer;	
+}
+
+.NavButtonDown {
+	border-style: solid;
+
+	border-left-color: #021d31;
+	border-top-color: #021d31;
+	border-right-color: #829cb1;
+	border-bottom-color: #829cb1;
+	color: #053A63;
+	background-color: #ffffff;
+
+	border-width: 2px;
+	cursor: pointer;	
+}
+
+a{
+	color: #0000cc;
+}
+
+a:visited{
+	color: #0000ff;
+}
+
+a:hover{
+	color: #0000cc;
+}
+
+
+</style>
+
+<!-- The following insertion allows you to add your own code directly to this head tag from the configuration screen -->
+
+
+
+<script type="text/javascript">
+
+//<![CDATA[
+
+<!--
+
+
+function Client(){
+//if not a DOM browser, hopeless
+	this.min = false; if (document.getElementById){this.min = true;};
+
+	this.ua = navigator.userAgent;
+	this.name = navigator.appName;
+	this.ver = navigator.appVersion;  
+
+//Get data about the browser
+	this.mac = (this.ver.indexOf('Mac') != -1);
+	this.win = (this.ver.indexOf('Windows') != -1);
+
+//Look for Gecko
+	this.gecko = (this.ua.indexOf('Gecko') > 1);
+	if (this.gecko){
+		this.geckoVer = parseInt(this.ua.substring(this.ua.indexOf('Gecko')+6, this.ua.length));
+		if (this.geckoVer < 20020000){this.min = false;}
+	}
+	
+//Look for Firebird
+	this.firebird = (this.ua.indexOf('Firebird') > 1);
+	
+//Look for Safari
+	this.safari = (this.ua.indexOf('Safari') > 1);
+	if (this.safari){
+		this.gecko = false;
+	}
+	
+//Look for IE
+	this.ie = (this.ua.indexOf('MSIE') > 0);
+	if (this.ie){
+		this.ieVer = parseFloat(this.ua.substring(this.ua.indexOf('MSIE')+5, this.ua.length));
+		if (this.ieVer < 5.5){this.min = false;}
+	}
+	
+//Look for Opera
+	this.opera = (this.ua.indexOf('Opera') > 0);
+	if (this.opera){
+		this.operaVer = parseFloat(this.ua.substring(this.ua.indexOf('Opera')+6, this.ua.length));
+		if (this.operaVer < 7.04){this.min = false;}
+	}
+	if (this.min == false){
+		alert('Your browser may not be able to handle this page.');
+	}
+	
+//Special case for the horrible ie5mac
+	this.ie5mac = (this.ie&&this.mac&&(this.ieVer<6));
+}
+
+var C = new Client();
+
+//for (prop in C){
+//	alert(prop + ': ' + C[prop]);
+//}
+
+
+
+//CODE FOR HANDLING NAV BUTTONS AND FUNCTION BUTTONS
+
+//[strNavBarJS]
+function NavBtnOver(Btn){
+	if (Btn.className != 'NavButtonDown'){Btn.className = 'NavButtonUp';}
+}
+
+function NavBtnOut(Btn){
+	Btn.className = 'NavButton';
+}
+
+function NavBtnDown(Btn){
+	Btn.className = 'NavButtonDown';
+}
+//[/strNavBarJS]
+
+function FuncBtnOver(Btn){
+	if (Btn.className != 'FuncButtonDown'){Btn.className = 'FuncButtonUp';}
+}
+
+function FuncBtnOut(Btn){
+	Btn.className = 'FuncButton';
+}
+
+function FuncBtnDown(Btn){
+	Btn.className = 'FuncButtonDown';
+}
+
+function FocusAButton(){
+	if (document.getElementById('CheckButton1') != null){
+		document.getElementById('CheckButton1').focus();
+	}
+	else{
+		if (document.getElementById('CheckButton2') != null){
+			document.getElementById('CheckButton2').focus();
+		}
+		else{
+			document.getElementsByTagName('button')[0].focus();
+		}
+	}
+}
+
+
+
+
+//CODE FOR HANDLING DISPLAY OF POPUP FEEDBACK BOX
+
+var topZ = 1000;
+
+function ShowMessage(Feedback){
+	var Output = Feedback + '<br /><br />';
+	document.getElementById('FeedbackContent').innerHTML = Output;
+	var FDiv = document.getElementById('FeedbackDiv');
+	topZ++;
+	FDiv.style.zIndex = topZ;
+	FDiv.style.top = TopSettingWithScrollOffset(30) + 'px';
+
+	FDiv.style.display = 'block';
+
+	ShowElements(false, 'input');
+	ShowElements(false, 'select');
+	ShowElements(false, 'object');
+
+//Focus the OK button
+	setTimeout("document.getElementById('FeedbackOKButton').focus()", 50);
+	
+//[inclPreloadImages]
+//	RefreshImages();
+//[/inclPreloadImages]
+}
+
+function ShowElements(Show, TagName){
+//Special for IE bug -- hide all the form elements that will show through the popup
+	if (C.ie){
+		var Els = document.getElementsByTagName(TagName);
+		for (var i=0; i<Els.length; i++){
+			if (Show == true){
+				Els[i].style.display = 'inline';
+			}
+			else{
+				Els[i].style.display = 'none';
+			}
+		}
+	} 
+}
+
+function HideFeedback(){
+	document.getElementById('FeedbackDiv').style.display = 'none';
+	ShowElements(true, 'input');
+	ShowElements(true, 'select');
+	ShowElements(true, 'object');
+	if (Finished == true){
+		Finish();
+	}
+}
+
+
+
+
+
+//This is the JavaScript code needed to make the exercise function
+
+//USING USER-DEFINED STRINGS:
+//If you are using the user-defined strings on the Custom tab of the Config screen, 
+//make sure the strings are correctly escaped for use in JavaScript.
+
+//CODE FOR ASSETS AND ASSET BASKETS
+
+//ASSETS SECTION
+function Asset(ID, Name, InitVal, DecPlace, ShowDuring, ShowEnd, ShowCount, CurrVal, Parent){
+	this.ID = ID;
+	this.Name=Name;
+	this.InitVal=InitVal;
+	this.DecPlace=DecPlace;
+	this.ShowDuring=ShowDuring;
+	this.ShowEnd=ShowEnd;
+	this.ShowCount=ShowCount;
+	this.CurrVal=CurrVal;
+	this.Parent = Parent;
+}
+
+function AssetGetCurrValString(){
+	var Num = this.CurrVal;
+	if (this.DecPlace > 0){
+		for (var i=0; i<this.DecPlace; i++){Num /= 10;}
+	}
+	var Result = Num.toString();
+	if (this.DecPlace > 0){
+		var DecLoc = Result.indexOf('.');
+		if (DecLoc < 0){Result += '.';}
+//Add leading zeros if required
+		while (((Result.length-1) - Result.indexOf('.'))<this.DecPlace){Result += '0';} 
+//Truncate trailing places if required
+		while (((Result.length-1) - Result.indexOf('.'))>this.DecPlace){Result = Result.substring(0, Result.length-1);}
+	}
+	return Result;
+}
+Asset.prototype.GetCurrValString=AssetGetCurrValString;
+
+function AssetGetCurrValFloat(){
+	var Num = this.CurrVal;
+	if (this.DecPlace > 0){
+		for (var i=0; i<this.DecPlace; i++){Num /= 10;}
+	}
+		return Num;
+}
+Asset.prototype.GetCurrValFloat=AssetGetCurrValFloat;
+
+function AssetSetCurrValFromFloat(Num){
+	if (this.DecPlace > 0){
+		for (var i=0; i<this.DecPlace; i++){Num *= 10;}
+	}
+	this.CurrVal = Num;
+}
+Asset.prototype.SetCurrValFromFloat=AssetSetCurrValFromFloat;
+
+function AssetReportCurrState(){
+	return this.Name + ': ' + this.GetCurrValString();
+}
+Asset.prototype.ReportCurrState=AssetReportCurrState;
+
+function AssetMeetsRequirement(ReqType, Req){
+	var Result = true;
+	switch(ReqType){
+		case 0: break;
+		case 1: Result = (this.CurrVal > Req); break;
+		case 2: Result = (this.CurrVal < Req); break;
+		case 3: Result = (this.CurrVal == Req); break;
+//New feature for 2.1.1.0: not equal to
+		case 4: Result = (this.CurrVal != Req); break;
+	}
+	return Result;
+}
+Asset.prototype.MeetsRequirement=AssetMeetsRequirement;
+
+function AssetPerformTransaction(OperatorType, Operand){
+	if ((this.Name == '_Timer_Seconds')&&(this.Parent.Active == true)){
+		this.CurrVal = Seconds;
+	}
+	switch(OperatorType){
+//Operands coming into this function should already be massaged to be at the same decimal place level as 
+//the asset being manipulated; therefore +, -, and = operators can use the values directly, but *, /, % 
+//and ^ transactions will have to reduce the operand to its true value by dividing it.
+		case 1: this.CurrVal += Operand; break; //add
+		case 2: this.CurrVal -= Operand; break; //subtract
+		case 3: for (var x=0; x<this.DecPlace; x++){Operand /= 10;}this.CurrVal *= Operand; break; //multiply
+		case 4: for (var x=0; x<this.DecPlace; x++){Operand /= 10;}this.CurrVal /= Operand; break; //divide
+		case 5: this.CurrVal = Operand; break; //set equal to
+		case 6: for (var x=0; x<this.DecPlace; x++){Operand /= 10;}this.CurrVal *= (Operand/100); break; //percentage
+//Difficult case (power of); need to change the operand and the value to core values, do the calculation, then
+//change the value back
+		case 7: 
+//Change the operand to core value
+			for (var x=0; x<this.DecPlace; x++){Operand /= 10;}
+//Change the asset value to core value
+			var y = this.CurrVal; for (var x=0; x<this.DecPlace; x++){y /= 10;}
+//Do the math
+			x = y; for (var j=1; j<Operand; j++){y *= x;} 
+//Raise the val again
+			for (var x=0; x<this.DecPlace; x++){y *= 10;}
+//Set the value
+			this.CurrVal = y;
+			break; 
+	}
+	this.CurrVal = Math.round(this.CurrVal);
+	if ((this.Name == '_Timer_Seconds')&&(this.Parent.Active == true)){
+		Seconds = this.CurrVal;
+	}
+}
+Asset.prototype.PerformTransaction=AssetPerformTransaction;
+
+function AssetCanBeShown(){
+	var Result = true;
+	if (IsEndPoint == true){
+		switch (this.ShowEnd){
+			case 0: Result = true; break;
+			case 1: Result = false; break;
+			case 2: Result = (this.CurrVal != 0); break;
+		}
+	}
+	else{
+		switch (this.ShowDuring){
+			case 0: Result = true; break;
+			case 1: Result = false; break;
+			case 2: Result = (this.CurrVal != 0); break;
+		}
+	}
+	return Result;
+}
+Asset.prototype.CanBeShown=AssetCanBeShown;
+
+function Basket(AList, Active){
+	this.Active = Active;
+	this.Assets = new Array();
+	if (AList.length > 0){
+		for (var i=0; i<AList.length; i++){
+			this.Assets[i] = new Asset(i, AList[i][0], AList[i][1], AList[i][2], AList[i][3], AList[i][4], A[i][5], A[i][6], this);
+		}
+	}
+}
+
+function BasketGetEffectiveOperand(Trans){
+//The "effective operand" is the operand converted to the right decimal place level (so an operand of 
+//5, which is to act on an asset with 2dps, should be converted to 500). This is especially difficult 
+//when the operand is the value of another asset, since that may have its own dp setting, and the two 
+//settings must be harmonized
+	var Operand = 0;
+	switch(Trans[2]){
+//First, a fixed value (this should already be specified at the right dp level)
+		case 0: Operand = Trans[3]; break;
+//Second, a random value; again, this should be specified at the right dp level already)
+		case 1: Operand = GetRand(Trans[3], Trans[4]); break;
+//Finally, the problem case: the value of another asset. In this case, we need to find out the dp 
+//settings of both the source and target asset
+//First get the real value of the source asset (so 500 for an asset with 2dp would be 5)
+		case 2: Operand = this.Assets[Trans[5]].GetCurrValFloat(); 
+//Now multiply this up according to the dp setting of the target asset (so 5 operating on a target asset
+//with dp2 would become 500)
+			for (var i=0; i<this.Assets[Trans[0]].DecPlace; i++){Operand *= 10;}
+			break;
+	}
+	return Operand;
+}
+Basket.prototype.GetEffectiveOperand=BasketGetEffectiveOperand;
+
+function BasketReportCurrState(){
+	if (this.Assets.length < 1){return '';}
+	var Result = '';
+	for (var i=0; i<this.Assets.length; i++){
+		if (this.Assets[i].CanBeShown()==true){
+			Result += '<tr><td style="text-align: right;">' + this.Assets[i].Name + ' </td>';
+			Result += '<td style="text-align: left;"> '
+			if (this.Assets[i].ShowCount==true){
+				Result += '&nbsp;:&nbsp;' + this.Assets[i].GetCurrValString();
+			}
+			Result += ' </td></tr>';
+		}
+	}
+	if (Result.length > 0){
+		Result = '<table class="AssetTable"><tr><th colspan="2">' + strYouHave + '</th></tr>' + Result + '</table>';
+	}
+	return Result;
+}
+Basket.prototype.ReportCurrState=BasketReportCurrState;
+
+function BasketCloneSelf(Copy, Active){
+	Copy = new Basket(A, false);
+	Copy.Active = Active;
+	for (var i=0; i<this.Assets.length; i++){
+		Copy.Assets[i].CurrVal = this.Assets[i].CurrVal;
+	}
+	return Copy;
+}
+Basket.prototype.CloneSelf=BasketCloneSelf;
+
+function BAssetMeetsRequirement(ANum, ReqType, Req){
+	return this.Assets[ANum].MeetsRequirement(ReqType, Req);
+}
+Basket.prototype.AssetMeetsRequirement=BAssetMeetsRequirement;
+
+function BAssetPerformTransaction(ANum, OpType, Operand){
+	this.Assets[ANum].PerformTransaction(OpType, Operand);
+}
+Basket.prototype.PerformTransaction=BAssetPerformTransaction;
+
+function BGetAssetValByName(AssetName){
+	var Result = 0;
+	for (var i=0; i<this.Assets.length; i++){
+		if (this.Assets[i].Name == AssetName){
+			Result = this.Assets[i].CurrVal;
+		}
+	}
+	return Result;
+}
+Basket.prototype.GetAssetValByName=BGetAssetValByName;
+
+//VARIABLES AND INTERFACE STRINGS
+
+var CurrBasket;
+var TempBasket;
+var CurrNode=0;
+var strYouHave='You have: ';
+var strLinkCaption='Select';
+var strFinishCaption='Select';
+var strDefaultRefusalMessage='Sorry! You can\'t do that.';
+var strTimesUp = 'Your time is over!';
+var strBookmarkExplanation = '';
+var strExerciseComplete = 'You have reached the end of the exercise.';
+var ShowImpossibleLinks=true;
+var StartTime = (new Date()).toLocaleString();
+var HPNStartTime = (new Date()).getTime();
+var SubmissionTimeout = 30000;
+var FollowingTrack = false;
+var CurrTime;
+var Started=false;
+
+var IsEndPoint = false;
+var Finished = false; //for compatibility with hotpot 6
+var TimeOver = false;
+
+function TransactionList(NNum, LNum){
+	this.List = new Array();
+	var i;
+	for (i=0; i<N[NNum][4].length; i++){this.List[this.List.length] = N[NNum][4][i];}
+	for (i=0; i<N[NNum][3][LNum][2].length; i++){this.List[this.List.length] = N[NNum][3][LNum][2][i];}
+	for (i=0; i<N[N[NNum][3][LNum][0]][2].length; i++){this.List[this.List.length] = N[N[NNum][3][LNum][0]][2][i];}
+}
+
+function TestTransactions(NNum, LNum){
+	var T = new TransactionList(NNum, LNum);
+	var Result = '';
+//Create a clone of the current asset basket to operate on
+	var B = CurrBasket.CloneSelf(B, false);
+
+//For each transaction
+	for (var i=0; i<T.List.length; i++){
+//Test the requirement
+		if (B.AssetMeetsRequirement(T.List[i][0], T.List[i][7], T.List[i][6]) == true){
+//If it succeeds, do the transaction
+			B.PerformTransaction(T.List[i][0], T.List[i][1], B.GetEffectiveOperand(T.List[i]));
+		}
+		else{
+//If it fails, check the refusal message
+			if (T.List[i][8].length > 0){
+				return T.List[i][8];
+			}
+//If no refusal message, return a string with spaces, otherwise return refusal message
+			else{
+				return strDefaultRefusalMessage;
+			}
+		}
+	}
+//If all have passed, return an empty string
+	return '';
+}
+
+function StartExercise(){
+	CurrBasket = new Basket(A, true);
+	ParseSearch();
+	CurrTime = new Date();
+	ShowCurrNode();
+
+	Started = true;
+}
+
+function StartUp(){
+	if (document.location.search.indexOf('___') > -1){
+		StartExercise();
+	}
+}
+
+function Restart(){
+	var d = document.location;
+	d.search = '';
+	document.location = d;
+}
+
+//CODE FOR HANDLING UNDO FUNCTIONALITY AND TRACKING NODE SEQUENCE
+function HNode(NNum, LNum, Bask){
+	this.NNum = NNum; //Number of the node
+	this.LNum = LNum; //Number of the link selected to leave the node
+	this.Basket = Bask.CloneSelf(A, false); //Copy of current basket of assets
+//	this.EntryTime = CurrTime.getTime() - HPNStartTime; //Stores time of entry to this node, offset by start time, in milliseconds
+	this.EntryTime = CurrTime.getTime(); //Stores absolute time of entry to this node
+	this.EntryTimeString = CurrTime.toLocaleString();
+	var D = new Date();
+//	this.ExitTime = D.getTime() - HPNStartTime; //Stores the time of exit from this node
+	this.ExitTime = D.getTime(); //Stores the absolute time of exit from this node
+
+	this.ExitTimeString = D.toLocaleString(); //Stores the time in human-readable format
+}
+
+function HNodeReportSelf(AddTime){
+	var S = this.NNum + ':' + this.LNum;
+	if (AddTime == true){
+		S += ':' + this.EntryTime;
+	}
+	return S;
+}
+HNode.prototype.ReportSelf=HNodeReportSelf;
+
+//Object containing the list of tracking node objects
+function HNodeList(){
+	this.Nodes = new Array();
+	var D = new Date();
+	this.StartTime = D.getTime(); // Stores the entry time of the exercise; =entry time to node 0
+	this.StartTimeString = D.toLocaleString();
+}
+
+function HNodeListReportAsSearch(IncludeTime){
+	var S = '___t;';
+	if (this.Nodes.length > 0){
+		S += this.Nodes[0].ReportSelf(IncludeTime);
+		for (var i=1; i<this.Nodes.length; i++){
+			S += ',' + this.Nodes[i].ReportSelf(IncludeTime);
+		}
+	}
+	return S;
+}
+HNodeList.prototype.ReportAsSearch=HNodeListReportAsSearch;
+
+var H = new HNodeList(); //array of HNode elements
+
+function Undo(){
+	if (H.Nodes.length < 1){
+		return;
+	}
+	var LastNode = H.Nodes.pop();
+	CurrNode = LastNode.NNum;
+	CurrBasket = LastNode.Basket.CloneSelf(A, true);
+	ShowCurrNode();
+}
+
+//CODE FOR HANDLING URL ENCODING OF STATE
+function ParseSearch(){
+	if (document.location.search.length < 1){return;}
+//First, get the part of the search string we're interested in
+	var Temp = document.location.search.substring(document.location.search.lastIndexOf('___'), document.location.search.length);
+	if (Temp.length < 1){return;}
+
+	var S = Temp.split(';');
+//S[0] tells us this is a bookmark, or a track
+	if (S.length > 0){
+		if (S[0] == '___b'){
+//It's a bookmark
+			ShowMessage(strBookmarkExplanation);
+		}
+		if (S[0] == '___t'){
+//It's tracking data
+			ParseTrack(S[1]);
+			return;
+		}
+	}
+//S[1] is the current node
+	if (S.length > 1){
+		if (S[1].length > 0){
+			var CN=parseInt(S[1]);
+			if ((CN>-1)&&(CN<N.length)){
+				CurrNode = CN;
+			}
+		}
+	}
+	if (S.length > 2){
+		if (S[2].length > 0){
+			var AA=S[2].split(',');
+			if (AA.length > 0){
+				for (var i=0; i<AA.length; i++){
+					var Val = parseInt(AA[i]);
+					if ((i<A.length)&&(Val != NaN)){
+						CurrBasket.Assets[i].CurrVal = Val;
+					}
+				}
+			}
+		}
+	}
+
+}
+
+var Footprints = new Array();
+
+function ParseTrack(Track){
+	if (Track.length < 3){
+		return;
+	}
+
+	var Steps = Track.split(',');
+	if (Steps.length < 2){
+		return;
+	}
+//We have valid track data, so the exercise can be displayed accordingly
+	FollowingTrack = true;
+	var NNum = 0;
+	var LNum = 0;
+	var T = 0;
+	for (var i=0; i<Steps.length; i++){
+		var Step = Steps[i].split(':');
+		NNum = parseInt(Step[0]);
+		if (NNum > -1){
+			LNum = parseInt(Step[1]);
+			if (LNum > -1){
+				if (Step.length > 2){
+					T = parseInt(Step[2]);
+				}
+				Footprints.push(new Array(NNum, LNum, T));
+			}
+		}
+	}
+}
+
+function CreateBookmark(){
+	var S = '___b;' + CurrNode + ';';
+	if (CurrBasket.Assets.length > 0){
+		S += CurrBasket.Assets[0].CurrVal;
+		for (var i=1; i<CurrBasket.Assets.length; i++){
+			S += ',' + CurrBasket.Assets[i].CurrVal;
+		}
+	}
+
+	return S;
+}
+
+function SetBookmark(){
+	if (Started == false){return;}
+	var Temp = document.location.search;
+	if (Temp.length < 1){
+		Temp = '?';
+	}
+	else{
+		Temp += '&';
+	}
+	document.location.search = Temp + CreateBookmark();
+}
+
+function MillisecondsToTimeReadout(MS){
+	var DT = new Date(MS);
+	return DT.getHours() + ':' + DT.getMinutes() + ':' + DT.getSeconds() + ':' + DT.getMilliseconds();
+}
+
+function ShowCurrNode(){
+	var DPT = N[CurrNode][0];
+	if ((FollowingTrack==true)&&(Footprints.length > 0)){
+		if (Footprints[0][2] > 0){
+			DPT += ' (' + MillisecondsToTimeReadout(Footprints[0][2]) + ')';
+		}
+	}
+	document.getElementById('DPTitle').innerHTML = DPT;
+	document.getElementById('DPContentsDiv').innerHTML = N[CurrNode][1];
+	var Links = '';
+	var Refusal = '';
+	var ValidLinks = 0;
+	for (var LNum=0; LNum<N[CurrNode][3].length; LNum++){
+		if ((FollowingTrack==true)&&(Footprints.length > 0)){
+//We're following a track, so we only want to make a working link for the correct item
+			if (LNum == Footprints[0][1]){
+				Links += MakeLink(CurrNode, LNum);
+				ValidLinks++;
+			}
+			else{
+				Links += MakeDummyLink(CurrNode, LNum);
+			}
+
+		}
+		else{
+			Refusal = TestTransactions(CurrNode, LNum);
+			if (Refusal.length > 0){
+				if (N[CurrNode][3][LNum][4] < 1){
+					N[CurrNode][3][LNum][3] = Refusal;
+					Links += MakeRefusalLink(CurrNode, LNum);
+				}
+			}
+			else{
+				Links += MakeLink(CurrNode, LNum);
+				ValidLinks++;
+			}
+		}
+	}
+	if (Links.length > 0){
+		Links = '<table class="LinkTable">' + Links + '</table>';
+	}
+
+	if (ValidLinks < 1){
+		IsEndPoint = true;
+		Finished = true;
+		if (document.getElementById('store') != null){
+			Links = '<table class="LinkTable">' + MakeEndLink() + '</table>';
+		}
+		else{
+			if (document.getElementById('UndoButton') == null){
+				Links = '<table class="LinkTable"><tr><td>' + strExerciseComplete + '</td></tr></table>';
+			}
+		}
+	}
+	document.getElementById('LinkListDiv').innerHTML = Links;
+
+//Show assets now -- endpoint issue may affect which are shown
+	var AssetOutput = CurrBasket.ReportCurrState();
+	if (AssetOutput.length > 0){
+		document.getElementById('AssetsDiv').innerHTML = AssetOutput;
+		document.getElementById('AssetDisplay').style.display = 'block';
+	}
+	else{
+		document.getElementById('AssetsDiv').innerHTML = '';
+		document.getElementById('AssetDisplay').style.display = 'none';
+	}
+
+//Remove the last footprint from the track
+	if (Footprints.length > 0){Footprints.shift();}
+
+	if ((IsEndPoint==true)&&(document.getElementById('UndoButton') == null)){
+//Record current state in the history array
+		H.Nodes.push(new HNode(CurrNode, LNum, CurrBasket));
+
+//Reset the current time
+		CurrTime = new Date();
+		setTimeout('Finish()', SubmissionTimeout);
+	}
+}
+
+function MakeFunctionButton(Caption, Action){
+	var Result = '';
+//Opera cannot handle adding dynamic buttons to the page, so we have
+//to use a link instead.
+	if (C.opera){
+		Result = '<a href="javascript:' + Action + '">' + Caption + '</a>';
+	}
+	else{
+		Result = '<button class="FuncButton" onfocus="FuncBtnOver(this)" onblur="FuncBtnOut(this)"  onmouseover="FuncBtnOver(this)" onmouseout="FuncBtnOut(this)" onmousedown="FuncBtnDown(this)" onmouseup="FuncBtnOver(this)" onclick="' + Action + '">' + Caption + '</button>';
+	}
+	return Result;
+}
+
+function MakeRefusalLink(NNum, LNum){
+	var Result = '<tr><td>';
+	Result += MakeFunctionButton(strLinkCaption, 'ShowMessage(N[' + NNum + '][3][' + LNum + '][3])');
+	Result += '</td>';
+	Result += '<td>' + N[NNum][3][LNum][1] + '</td></tr>';
+	return Result;
+}
+
+function MakeLink(NNum, LNum){
+	var Result = '<tr><td>';
+	Result += MakeFunctionButton(strLinkCaption, 'FollowLink(' + LNum + ')');
+	Result += '</td>';
+	Result += '<td>' + N[NNum][3][LNum][1] + '</td></tr>';
+	return Result;
+}
+
+function MakeDummyLink(NNum, LNum){
+	var Result = '<tr><td style="text-align: right;">&nbsp;&#x25cf;&nbsp;</td>';
+	Result += '<td>' + N[NNum][3][LNum][1] + '</td></tr>';
+	return Result;
+}
+
+function MakeEndLink(){
+	var Result = '<tr><td>';
+	Result += MakeFunctionButton(strFinishCaption, 'Finish()');
+	Result += '</td>';
+	Result += '<td>' + strExerciseComplete + '</td></tr>';
+	return Result;
+}
+
+function FollowLink(LNum){
+
+//Record current state in the history array
+	H.Nodes.push(new HNode(CurrNode, LNum, CurrBasket));
+
+//Reset the current time
+	CurrTime = new Date();
+
+	var T = new TransactionList(CurrNode, LNum);
+//For each transaction
+	for (var i=0; i<T.List.length; i++){
+//Do the transaction
+		CurrBasket.PerformTransaction(T.List[i][0], T.List[i][1], CurrBasket.GetEffectiveOperand(T.List[i]));
+	}
+//Now change the node
+	CurrNode = N[CurrNode][3][LNum][0];
+	ShowCurrNode();
+}
+
+
+
+//HOTPOTNET FUNCTIONS
+function Finish(){
+//If there's a form, fill it out and submit it
+	try{
+		var F = document.getElementById('store');
+		if (F != null){
+			F.starttime.value = HPNStartTime;
+			F.endtime.value = (new Date()).getTime();
+			F.mark.value = CurrBasket.GetAssetValByName('Score'); //if an asset called "Score" exists, this value will be submitted as the mark
+			var Temp = '<?xml version="1.0"?><hpnetresult><fields>';
+			Temp += '<field><fieldname>endbookmark</fieldname><fieldtype>url-search</fieldtype><fieldlabel>Click here to see the final position in the maze</fieldlabel><fieldlabelid>QuandaryViewFinalPosition</fieldlabelid><fielddata>' + CreateBookmark() + '</fielddata></field>';
+			Temp += '<field><fieldname>track</fieldname><fieldtype>url-search</fieldtype><fieldlabel>Click here to track the student through the maze.</fieldlabel><fieldlabelid>QuandaryViewTrack</fieldlabelid><fielddata>' + H.ReportAsSearch(false) + '</fielddata></field>';
+			Temp += '<field><fieldname>timedtrack</fieldname><fieldtype>url-search</fieldtype><fieldlabelid>QuandaryViewTimedTrack</fieldlabelid><fieldlabel>Click here to track the student through the maze with timing data.</fieldlabel><fielddata>' + H.ReportAsSearch(true) + '</fielddata></field>';
+			Temp += '</fields></hpnetresult>';
+			F.detail.value = Temp;
+			F.submit();
+
+		}
+	}
+	catch(er){
+		return;
+	}
+}
+
+//UTILITY FUNCTIONS
+
+function GetScrollTop(){
+	if (document.documentElement && document.documentElement.scrollTop){
+		return document.documentElement.scrollTop;
+	}
+	else{
+		if (document.body){
+ 			return document.body.scrollTop;
+		}
+		else{
+			return window.pageYOffset;
+		}
+	}
+}
+
+function GetViewportHeight(){
+	if (window.innerHeight){
+		return window.innerHeight;
+	}
+	else{
+		return document.getElementsByTagName('body')[0].clientHeight;
+	}
+}
+
+function TopSettingWithScrollOffset(TopPercent){
+	var T = Math.floor(GetViewportHeight() * (TopPercent/100));
+	return GetScrollTop() + T; 
+}
+
+function GetRand(Lower, Upper){
+	var Rng = Upper-Lower;
+	return (Math.round(Math.random()*Rng)) + Lower;
+}
+
+var A = new Array();
+
+
+var N = new Array();
+N[0] = new Array();
+N[0][0] = '';
+N[0][1] = 'During an in-class exam you see few students straining their necks sideways from time to time and you think they are trying to copy from other students sitting next to them. So you call them to your desk and say you had observed them looking at each other&#x2019;s answers and copying during the exam. Click on one of the actions below to explore.';
+N[0][2] = new Array();
+
+N[0][3] = new Array();
+N[0][3][0] = new Array();
+N[0][3][0][0] = 1;
+N[0][3][0][1] = 'Students say their necks were tired looking down at their papers and so they were stretching their necks, but not copying from each other.';
+N[0][3][0][2] = new Array();
+
+N[0][3][0][3] = '';
+N[0][3][0][4] = 0;
+
+N[0][3][1] = new Array();
+N[0][3][1][0] = 2;
+N[0][3][1][1] = 'Students say they did know they were doing that, but say they were really not copying from each other.';
+N[0][3][1][2] = new Array();
+
+N[0][3][1][3] = '';
+N[0][3][1][4] = 0;
+
+N[0][3][2] = new Array();
+N[0][3][2][0] = 3;
+N[0][3][2][1] = 'Students do not respond to your accusation.';
+N[0][3][2][2] = new Array();
+
+N[0][3][2][3] = '';
+N[0][3][2][4] = 0;
+
+N[0][3][3] = new Array();
+N[0][3][3][0] = 4;
+N[0][3][3][1] = 'Students admit they were copying and promise that they would not do it again.';
+N[0][3][3][2] = new Array();
+
+N[0][3][3][3] = '';
+N[0][3][3][4] = 0;
+
+
+N[0][4] = new Array();
+
+
+N[1] = new Array();
+N[1][0] = '';
+N[1][1] = 'During a long exam students can get tired of looking down at their papers and may have to stretch their necks from time to time and so it is possible they were doing that but not copying. So, if you are convinced of the students&#x2019; response you may not take any action. Otherwise, you may consider taking some action according to departmental and university guidelines. But you may advise all the students to stretch their necks by looking up instead of looking sideways as it could give the impression that they are looking at another student&#x2019;s paper and cheating during the exam.';
+N[1][2] = new Array();
+
+N[1][3] = new Array();
+N[1][3][0] = new Array();
+N[1][3][0][0] = 0;
+N[1][3][0][1] = 'Go back to previous level.';
+N[1][3][0][2] = new Array();
+
+N[1][3][0][3] = '';
+N[1][3][0][4] = 0;
+
+
+N[1][4] = new Array();
+
+
+N[2] = new Array();
+N[2][0] = '';
+N[2][1] = 'Some students may be anxious during an exam and so it is possible they were fidgeting and so it is possible they were not copying from each other. So, if you are convinced of the students&#x2019; response you may not take any action. Otherwise, you may consider taking some action according to departmental and university guidelines. But you may caution all students about exhibiting any unusual mannerisms that could give the impression that they are looking at another student&#x2019;s paper and cheating during the exam.';
+N[2][2] = new Array();
+
+N[2][3] = new Array();
+N[2][3][0] = new Array();
+N[2][3][0][0] = 0;
+N[2][3][0][1] = 'Go back to previous level.';
+N[2][3][0][2] = new Array();
+
+N[2][3][0][3] = '';
+N[2][3][0][4] = 0;
+
+
+N[2][4] = new Array();
+
+
+N[3] = new Array();
+N[3][0] = '';
+N[3][1] = 'If students do not respond to your accusation it could be due to one of several possibilities: they could have been stunned by your accusation, especially if they were not copying from each other, and did not know how to respond during a stressful exam or they could have been copying from each other and so they could be waiting to see what you would say or do next. It is your professional responsibility to ask the students to explain themselves, listen to their responses, and take appropriate action. If you are not sure the students were cheating, you may ask them to sit apart from each other or change their seating, and ask them to continue with their exam. If they are tired from looking at the paper and would like to stretch, you may advise them to look up instead of looking sideways and giving the impression that they were copying from each other.';
+N[3][2] = new Array();
+
+N[3][3] = new Array();
+N[3][3][0] = new Array();
+N[3][3][0][0] = 0;
+N[3][3][0][1] = 'Go back to previous level.';
+N[3][3][0][2] = new Array();
+
+N[3][3][0][3] = '';
+N[3][3][0][4] = 0;
+
+
+N[3][4] = new Array();
+
+
+N[4] = new Array();
+N[4][0] = '';
+N[4][1] = 'If the students admitted they were copying then you may take appropriate action according to department and university policies.';
+N[4][2] = new Array();
+
+N[4][3] = new Array();
+N[4][3][0] = new Array();
+N[4][3][0][0] = 0;
+N[4][3][0][1] = 'Go back to previous level.';
+N[4][3][0][2] = new Array();
+
+N[4][3][0][3] = '';
+N[4][3][0][4] = 0;
+
+
+N[4][4] = new Array();
+
+
+
+
+
+
+//-->
+
+//]]>
+
+</script>
+
+</head>
+
+<body onload="StartUp()">
+
+<!-- BeginTopNavButtons -->
+
+
+<div class="NavButtonBar" id="TopNavBar">
+
+
+
+
+
+
+<button class="NavButton" onfocus="NavBtnOver(this)" onblur="NavBtnOut(this)" onmouseover="NavBtnOver(this)" onmouseout="NavBtnOut(this)" onmousedown="NavBtnDown(this)" onmouseup="NavBtnOut(this)" onclick="location='javascript:history.go(-1);'; return false;">Exit (Return to tutorial)</button>
+
+
+</div>
+
+
+
+<!-- EndTopNavButtons -->
+
+<div class="Titles">
+	<h2 class="ExerciseTitle">Case 5</h2>
+
+
+
+</div>
+
+<div class="DecisionPoint">
+
+
+<div class="ControlButtons">
+
+
+
+<button class="FuncButton" onfocus="FuncBtnOver(this)" onblur="FuncBtnOut(this)"  onmouseover="FuncBtnOver(this)" onmouseout="FuncBtnOut(this)" onmousedown="FuncBtnDown(this)" onmouseup="FuncBtnOver(this)" onclick="Restart()">Restart</button>
+
+
+
+</div>
+
+	<h3 id="DPTitle" class="DecisionPointTitle"></h3>
+
+<table class="DPTable"><tr>
+<td>
+
+	<div id="DPContentsDiv" class="DecisionPointText">
+
+		<div class="Instructions">
+		You notice during an in-class exam a few students straining their necks sideways and you think they are trying to cheat.
+		</div>
+
+		<div class="Instructions">
+		
+		</div>
+
+	</div>
+
+	<div id="LinkListDiv" class="LinkList">
+
+		<div style="text-align: center">
+<button class="FuncButton" onfocus="FuncBtnOver(this)" onblur="FuncBtnOut(this)"  onmouseover="FuncBtnOver(this)" onmouseout="FuncBtnOut(this)" onmousedown="FuncBtnDown(this)" onmouseup="FuncBtnOver(this)" onclick="StartExercise()">Start</button>
+		</div>
+	</div>
+
+</td>
+<td id="AssetDisplay">
+	<div id="AssetsDiv" class="Assets">
+
+	</div>
+</td></tr></table>
+</div>
+
+
+<div class="Feedback" id="FeedbackDiv">
+<div class="FeedbackText" id="FeedbackContent"></div>
+<button id="FeedbackOKButton" class="FuncButton" onfocus="FuncBtnOver(this)" onblur="FuncBtnOut(this)" onmouseover="FuncBtnOver(this)" onmouseout="FuncBtnOut(this)" onmousedown="FuncBtnDown(this)" onmouseup="FuncBtnOver(this)" onclick="HideFeedback(); return false;">&nbsp;Select&nbsp;</button>
+</div>
+
+<!-- BeginBottomNavButtons -->
+
+
+<div class="NavButtonBar" id="BottomNavBar">
+
+
+
+
+
+
+<button class="NavButton" onfocus="NavBtnOver(this)" onblur="NavBtnOut(this)" onmouseover="NavBtnOver(this)" onmouseout="NavBtnOut(this)" onmousedown="NavBtnDown(this)" onmouseup="NavBtnOut(this)" onclick="location='javascript:history.go(-1);'; return false;">Exit (Return to tutorial)</button>
+
+
+</div>
+
+
+
+<!-- EndBottomNavButtons -->
+
+<!-- BeginSubmissionForm -->
+
+<!-- EndSubmissionForm -->
+
+
+</body>
+</html>

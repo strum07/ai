@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>Certificate</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript" src="../tracking_scripts.js" type="text/javascript" ></script>
+
+<LINK media=screen href="css/cert_screen.css" type=text/css rel=stylesheet>
+<LINK media=print href="css/cert_print.css" type=text/css rel=stylesheet>
+
+<style type="text/css">
+<!--
+.style2 {font-family: Georgia, "Times New Roman", Times, serif, font-size:larger}
+-->
+</style>
+<link href="file:///F|/css/page_styles.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+<!--
+.style3 {font-size: 14px}
+-->
+</style>
+</head>
+
+<body>
+<p>
+  <script language="javascript" class="style2">
+
+var finalStr;
+var date1 = new Date();
+
+finalStr = '<table width="48%"  border="0">';
+finalStr += '<tr><td><div align="center"><img src="images/certificatetop.jpg" width="768" height="356"></div></td></tr>';
+finalStr += '<tr><td height="35"><div align="center"><span class="style2">' + opener.fname + ' ' + opener.lname + '</span></div></td></tr>';
+finalStr += '<tr><td height="34"><div align="center"><span class="style2">' + opener.dept + '</span></div></td></tr>';
+finalStr += '<tr><td><div align="center" class="Verdana16bolditalic">for successfully completing the Online Tutorial On Academic Integrity</div></td></tr>';
+finalStr += '<tr><td height="22"><div align="center" class="Verdana12bold">on ' + date1.getMonth() + '/' +  date1.getDate() + '/' + date1.getYear() + ' at ' + date1.getHours() + ':' + date1.getMinutes() + ':' + date1.getSeconds() + ' C.S.T. </div></td></tr>';
+finalStr += '<tr><td><div align="center"><img src="images/certificatebottom.jpg" width="768" height="70"></div></td></tr>';
+finalStr += '<tr><td><div align="center" id="printlogo"><input type="submit" name="Submit" value="Print Certificate" onClick="window.print();"></div></td></tr></table>';
+
+
+document.write(finalStr);
+
+</script>
+<span class="style3"></span></p>
+</body>
+</html>

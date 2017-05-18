@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>User Information</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<script language="JavaScript" src="../tracking_scripts.js" type="text/javascript" ></script>
+<style type="text/css">
+<!--
+.style1 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-weight: bold;
+}
+.style5 {font-family: Georgia, "Times New Roman", Times, serif}
+-->
+</style>
+</head>
+
+<body>
+<script language="javascript">
+
+function enterInfo()
+{
+	if(document.getElementById('fname').value == "")
+	{
+		alert('Please enter your first name!');
+		return;
+	}
+	if(document.getElementById('lname').value == "")
+	{
+		alert('Please enter your last name!');
+		return;
+	}
+	if(document.getElementById('dept').value == "")
+	{
+		alert('Please enter your department!');
+		return;
+	}
+
+	opener.fname = document.getElementById('fname').value;
+	opener.lname = document.getElementById('lname').value;
+	opener.dept = document.getElementById('dept').value;
+	openCertificate();
+}
+
+function MM_openBrWindow(theURL,winName,features) { 
+  window.open(theURL,winName,features);
+}
+
+function openCertificate()
+{
+	window.location.replace("finalScore.htm");	
+}
+
+</script>
+<table width="100%"  border="0">
+  <tr>
+    <td height="71" colspan="4"><table width="100%"  border="0">
+      <tr>
+        <td width="4%">&nbsp;</td>
+        <td width="72%"><div align="center" class="style1">Enter the following information </div></td>
+        <td width="24%">&nbsp;</td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><div align="center">Please enter your Name and Department below. This information will be displayed on the certificate. <br>
+          Please note: The Name and Department information will not be saved after you close the tutorial window. </div></td>
+        <td>&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td width="18%" rowspan="2"><table width="100%"  border="0">
+      <tr>
+        <td><img src="images/aiot_logo2.gif" width="113" height="201"></td>
+      </tr>
+    </table></td>
+    <td colspan="3" valign="top"><div align="left" class="style5">
+      <p>First Name : 
+          <input name="textfield" type="text" id="fname">
+          <br>
+          <br>
+          Last Name :&nbsp; 
+          <input name="textfield2" type="text" id="lname">
+          <br>
+          <br>
+          Department: 
+        <input name="textfield3" type="text" id="dept">
+      </p>
+    </div> </td>
+  </tr>
+  <tr>
+    <td colspan="3" valign="top"><div align="left" class="style5"> <input type="submit" name="Submit" value="Submit" onClick="enterInfo()">
+   </div> </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="2">&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div align="center">
+        <table width="100%"  border="0" align="center">
+          <tr>
+            <td width="51%"><div align="center">
+            </div></td>
+            <td width="49%">&nbsp;</td>
+          </tr>
+        </table>
+</div></td>
+  </tr>
+  <tr>
+    <td colspan="4">&nbsp;</td>
+  </tr>
+</table>
+</body>
+</html>

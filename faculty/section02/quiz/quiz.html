@@ -1,0 +1,955 @@
+<html>
+<head>
+<meta name="Tech Staff - FDIDC" content="FDIDC Online Quiz Template">
+<meta name="keywords" content="Online Quiz, FDIDC, Faculty Development, Instructional Technoligies">
+<title>Causes of Academic Dishonesty - Online Quiz</title>
+<script language="JavaScript" src="../../../tracking_scripts.js" type="text/javascript" ></script>
+<script language="javascript" type="text/javascript">
+// button to gotoURL
+
+
+function MM_goToURL() { //v3.0
+  var i, args=MM_goToURL.arguments; document.MM_returnValue = false;
+  for (i=0; i<(args.length-1); i+=2) eval(args[i]+".location='"+args[i+1]+"'");
+}
+
+// BrowserCheck Object
+
+function BrowserCheck() {
+        var b = navigator.appName
+//HBS extension
+        this.mac = (navigator.appVersion.indexOf('Mac') != -1)
+        if (b=="Netscape") this.b = "ns"
+        else if (b=="Microsoft Internet Explorer") this.b = "ie"
+        else this.b = b
+        this.version = navigator.appVersion
+        this.v = parseInt(this.version)
+        this.ns = (this.b=="ns" && this.v>=4)
+        this.ns4 = (this.b=="ns" && this.v==4)
+        this.ns5 = (this.b=="ns" && this.v==5)
+        this.ie = (this.b=="ie" && this.v>=4)
+        this.ie4 = (this.version.indexOf('MSIE 4')>0)
+        this.ie5 = (this.version.indexOf('MSIE 5')>0)
+        this.min = (this.ns||this.ie)
+         this.CRAPBrowser = (this.ie4 && this.mac); //Cannot Resolve Addresses Properly
+}
+
+is = new BrowserCheck();
+
+var LocFolder = GetFolder(window.location.href);
+function GetFolder(LocPath){
+        LocPath = ReplaceStuff('\'','%27',LocPath);
+        var i = LocPath.lastIndexOf('/');
+        if (i<0){i=LocPath.lastIndexOf('\\')};
+        return LocPath.substring(0,i);
+}
+
+function CombineURLs(InURL){
+        var i = InURL.indexOf('../');
+        var s = LocFolder;
+        while (i >- 1){
+                s = GetFolder(s);
+                InURL = InURL.substring(3,InURL.length);
+                i = InURL.indexOf('../');
+        }
+        return s + '/' + InURL;
+}
+
+x = new Array();
+function ResolveURLs(InText,Attribute){
+        x.length=0;
+        var Temp = InText.toLowerCase();
+        var z;
+        var AttLen = Attribute.length + 2;
+        var y=Temp.lastIndexOf(Attribute + '="');
+        while (y>-1){
+                var sLoc = y+AttLen;
+                if (Temp.substring(sLoc,sLoc+5) != 'http:'){
+                        x[x.length]=new Array();
+                        x[x.length-1][0] = sLoc;
+                        z = Temp.indexOf('"',sLoc);
+                        x[x.length-1][1] = z;
+                        x[x.length-1][2] = InText.substring(sLoc,z);
+
+                }
+                Temp = Temp.substring(0,y);
+                y=Temp.lastIndexOf(Attribute + '="');
+        }
+        for (var j=0; j<x.length; j++){
+                InText = InText.substring(0,x[j][0]) + CombineURLs(x[j][2]) + InText.substring(x[j][1], InText.length);
+        }
+        return InText;
+}
+
+
+
+function ResolveAllURLs(Stuff){
+        Stuff = ResolveURLs(Stuff,'href');
+        Stuff = ResolveURLs(Stuff,'src');
+        Stuff = ResolveURLs(Stuff,'parent.location');
+        return Stuff;
+}
+
+
+var ExBGColor = '#ffffff';
+
+
+
+var PageBGColor = '#ffffff';
+
+
+
+var NavBarColor = '#ffffff';
+
+
+var TextColor = '#000000';
+var CurrQNum = 0;
+var ALetters = 'abcdefghijklmnopqrstuvwxyz';
+var CorrectIndicator = ' Right';
+var IncorrectIndicator = ' Wrong';
+var YourScoreIs = '<I><b>Total Score in Percentage points :</b></I>';
+var Tries = 0;
+var CorrectChoices = 0;
+var ContinuousScoring = false;
+var CorrectFirstTime = 'Questions answered correctly the first time: ';
+var ExerciseTitle = '<p><font face="Arial, Helvetica, sans-serif" size="+2" color="#000000" style="font-weight:bold;">Causes of Academic Dishonesty</font>';
+var ExerciseSubtitle = '<font face="Arial, Helvetica, sans-serif" color="#000000"></font>';
+//var Instructions = '<B><I>Select the best answer</I></B>';
+
+var ShuffleQs = true;
+var ShuffleAs = true;
+var DefaultRight = '<b><B><font face="Arial, Helvetica, sans-serif" size= "+1" color="#12A203"> Correct Answer!</font></B></b>';
+var DefaultWrong = '<b><B><font face="Arial, Helvetica, sans-serif" size= "+1" color="#FD0202"> Sorry, Wrong Answer! Try again.</font></B></b>';
+var QsToShow = 15;
+var ShowOneByOne = true;
+var ReadingURL = '';
+var EraseFeedback = true;
+var EndQuiz = false;
+var Score = 0;
+var QuestionCount=0;
+var finalOutput;
+var tempfinalOutput='';
+var PreviousPage = history.length;
+
+
+
+var Qtex = ''
+
+
+
+
+
+var NavBar='';
+
+//Code of the Title
+
+//var TitleCode =  '<tr><td bgcolor="#ffffff"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="50%"><div align="left"><a style="TEXT-DECORATION: none" href="javascript:window.close();" target="_parent"><font face="Arial, Helvetica, sans-serif" align="left" size="-1" color="#000000"><b></b></font></a> </div></td><td width="50%"><div align="right"><a style="TEXT-DECORATION: none" href="javascript:window.close();" target="_parent"><font face="Arial, Helvetica, sans-serif" align="right" size="-1" color="#000000"><b>Close</b></font></a></div></td></tr><tr><td colspan="2"><div align="center">';
+var TitleCode =  '<tr><td bgcolor="#ffffff"><table width="100%" border="0" cellspacing="0" cellpadding="0"><tr><td width="50%"><div align="left"><a style="TEXT-DECORATION: none" target="_parent"><font face="Arial, Helvetica, sans-serif" align="left" size="-1" color="#000000"><b>Select the correct response before proceeding to next question.</b></font></a> </div></td><td width="50%"><div align="right"><a style="TEXT-DECORATION: none" href="javascript:window.close();" target="_parent"><font face="Arial, Helvetica, sans-serif" align="right" size="-1" color="#000000"><b>Close</b></font></a></div></td></tr><tr><td colspan="2"><div align="center">';
+TitleCode += '<font size="+1" face="Arial, Helvetica, sans-serif" color="#ffffff">' + ExerciseTitle+ '</font></div></td></tr></table>';
+TitleCode += '</td></tr>';
+
+//Code for buttons move left and move right
+
+var QButtonsOpener = '<table border="0" width="100%" cellpadding="10">';
+QButtonsOpener += '<tr><td align="center" valign="middle">';
+//QButtonsOpener += '<font size="+1"><input type="button" value="Previous Question" onclick="parent.ChangeQ(-1)"></input>';
+var QButtonsCloser = '<input type="button" value="Next Question" onclick="parent.ChangeQ(1)"></input>';
+QButtonsCloser += '</font></td></tr></table>';
+
+var TableOpener = '<form name="QForm">';
+TableOpener += '<table border="0" width="85%">';
+var QRow = '<tr><td valign="top" bgcolor="#ffffff" align="right">';
+
+QRow += '<font size="2" face="Arial, Helvetica, sans-serif" color="#000000"><B>[QNumber])</B></font></td>';
+
+QRow += '<td colspan="3" valign="top" bgcolor="#ffffff"><font size="-1" face="Arial, Helvetica, sans-serif" color="#000000">[Question]<br />&nbsp;';
+
+QRow += '</font></td></tr>';
+
+
+
+
+var MARow = '<tr><td></td><td valign="top" bgcolor="#ffffff" colspan="3"><input type="checkbox" name="A_[QNum]_[ANum]" value="[Correct]"></input>';
+MARow += '<font size="-1" face="Arial, Helvetica, sans-serif" color="#000000">[Ans]</font></td></tr>';
+
+
+var CheckButton = '<tr><td></td><td valign="top" bgcolor="#ffffff" ><input type="button" value="Check"';
+CheckButton += ' onclick="parent.CheckMulti([QNum])"></input></td><td>test</td></tr>';
+
+var ARow = '<tr><td></td><td valign="center" bgcolor="#ffffff"><input type="button" value="[ALetter]" OnClick="parent.CheckAnswer([QNum],[ANum])"></input></td>';
+ARow += '<td width="100%" bgcolor="#ffffff"><font size="-1" face="Arial, Helvetica, sans-serif" color="#000000">[Ans]</font></td>';
+ARow += '<td valign="top" bgcolor="#ffffff"></td></tr>';
+
+
+
+
+TableCloser = '</table></form>';
+
+function GoBack(){
+        var BackSkip = history.length - PreviousPage;
+        if (BackSkip > 0){
+                history.go((BackSkip+1)*-1);
+        }
+        else{
+                parent.history.back();
+        }
+}
+
+function ReduceItems(){
+        var ItemToDump=0;
+        var j=0;
+        while (I.length > QsToShow){
+                ItemToDump = Math.floor(I.length*Math.random());
+                for (j=ItemToDump; j<(I.length-1); j++){
+                        I[j] = I[j+1];
+                }
+                I.length = I.length-1;
+        }
+}
+
+function Shuffle(InArray){
+        Temp = new Array();
+        var Len = InArray.length;
+
+        var j = Len;
+
+        for (var i=0; i<Len; i++){
+                Temp[i] = InArray[i];
+        }
+
+        for (i=0; i<Len; i++){
+                Num = Math.floor(j  *  Math.random());
+                InArray[i] = Temp[Num];
+
+                for (var k=Num; k < j; k++) {
+                        Temp[k] = Temp[k+1];
+                }
+                j--;
+        }
+        return InArray;
+}
+
+function WriteFeedback(Feedback) {
+//Build the output string
+        var OutString = '';
+        OutString += '<html>';
+        OutString += '<body  topmargin="0" background="" bgcolor="#ffffff" text="#000000" link="#000066" vlink="#99ff99">';
+        OutString += '<center><table border="0" cellpadding="5" cellspacing="1" width="85%" height="100%">';
+        //OutString += NavBar;
+        if (Feedback.length>0){
+                OutString += '<tr><td bgcolor="#ffffff" align="center" valign="top" >';
+                OutString += '<font face="Arial, Helvetica, sans-serif" size="-1" color="#000000">';
+                OutString += Feedback;
+                OutString += '</font></td></tr>'
+        }
+
+        OutString += '</table></center></body></html>';
+
+        if (is.CRAPBrowser){OutString=ResolveAllURLs(OutString);}
+
+//Write it to the frame
+        TopFrame.document.clear();
+        TopFrame.document.open();
+        TopFrame.document.write(OutString);
+        TopFrame.document.close();
+}
+
+function StartUp(){
+
+//Reduce array if required
+        if (QsToShow < I.length){
+                ReduceItems();
+        }
+
+//Shuffle stuff if required
+
+        if (ShuffleQs == true){
+                I = Shuffle(I);
+        }
+
+       // if (ShuffleAs == true){
+               // for (var i=0; i<I.length; i++){
+               //         I[i][1] = Shuffle(I[i][1]);
+               // }
+     //   }
+
+//Create arrays
+        CreateStatusArrays();
+
+
+
+//Show the first question or all of them
+        if (ShowOneByOne == false){
+                ShowAllQs();
+        }
+        else{
+                ShowQuestion(CurrQNum);
+        }
+
+//Write the top frame
+
+        //WriteFeedback(Instructions);
+}
+
+
+I = new Array();
+
+I[0] = new Array();
+I[0][0]='One common reason some students commit acts of academic dishonesty is a lack of understanding of:';
+I[0][1] = new Array();
+I[0][1][0] = new Array();
+I[0][1][0][0]='What an academic institution is.';
+I[0][1][0][1]='';
+I[0][1][0][2] = 0;
+I[0][1][1] = new Array();
+I[0][1][1][0]='What academic dishonesty is.';
+I[0][1][1][1]='';
+I[0][1][1][2] = 1;
+I[0][1][2] = new Array();
+I[0][1][2][0]='Academic advising.';
+I[0][1][2][1]='';
+I[0][1][2][2] = 0;
+I[0][1][3] = new Array();
+I[0][1][3][0]='Academic pursuits.';
+I[0][1][3][1]='';
+I[0][1][3][2] = 0;
+I[0][2] = 0;
+
+I[1] = new Array();
+I[1][0]='One common reason some students violate standards of academic integrity is an inability to:';
+I[1][1] = new Array();
+I[1][1][0] = new Array();
+I[1][1][0][0]='Resell textbooks.';
+I[1][1][0][1]='';
+I[1][1][0][2] = 0;
+I[1][1][1] = new Array();
+I[1][1][1][0]='Manage their finances.';
+I[1][1][1][1]='';
+I[1][1][1][2] = 0;
+I[1][1][2] = new Array();
+I[1][1][2][0]='Sit in the front of the class.';
+I[1][1][2][1]='';
+I[1][1][2][2] = 0;
+I[1][1][3] = new Array();
+I[1][1][3][0]='Manage demands of student life.';
+I[1][1][3][1]='';
+I[1][1][3][2] = 1;
+I[1][2] = 0;
+
+I[2] = new Array();
+I[2][0]='One reason some students may commit violations of academic integrity is that they may not be aware of the possible:';
+I[2][1] = new Array();
+I[2][1][0] = new Array();
+I[2][1][0][0]='Consequences.';
+I[2][1][0][1]='';
+I[2][1][0][2] = 1;
+I[2][1][1] = new Array();
+I[2][1][1][0]='Benefits.';
+I[2][1][1][1]='';
+I[2][1][1][2] = 0;
+I[2][1][2] = new Array();
+I[2][1][2][0]='Incentives.';
+I[2][1][2][1]='';
+I[2][1][2][2] = 0;
+I[2][1][3] = new Array();
+I[2][1][3][0]='Opportunities.';
+I[2][1][3][1]='';
+I[2][1][3][2] = 0;
+I[2][2] = 0;
+
+I[3] = new Array();
+I[3][0]='Students may hesitate to commit acts of academic dishonesty if instructors:';
+I[3][1] = new Array();
+I[3][1][0] = new Array();
+I[3][1][0][0]='Do not know them.';
+I[3][1][0][1]='';
+I[3][1][0][2] = 0;
+I[3][1][1] = new Array();
+I[3][1][1][0]='Get to know them.';
+I[3][1][1][1]='';
+I[3][1][1][2] = 1;
+I[3][1][2] = new Array();
+I[3][1][2][0]='Get to know their friends.';
+I[3][1][2][1]='';
+I[3][1][2][2] = 0;
+I[3][1][3] = new Array();
+I[3][1][3][0]='Do not know their friends.';
+I[3][1][3][1]='';
+I[3][1][3][2] = 0;
+I[3][2] = 0;
+
+I[4] = new Array();
+I[4][0]='One of the reasons students commit acts of academic dishonesty is a lack of:';
+I[4][1] = new Array();
+I[4][1][0] = new Array();
+I[4][1][0][0]='A good textbook.';
+I[4][1][0][1]='';
+I[4][1][0][2] = 0;
+I[4][1][1] = new Array();
+I[4][1][1][0]='Clear exam questions.';
+I[4][1][1][1]='';
+I[4][1][1][2] = 0;
+I[4][1][2] = new Array();
+I[4][1][2][0]='Clear policies for the course.';
+I[4][1][2][1]='';
+I[4][1][2][2]= 1;
+I[4][1][3] = new Array();
+I[4][1][3][0]='Good teaching assistants.';
+I[4][1][3][1]='';
+I[4][1][3][2]= 0;
+I[4][2] = 0;
+
+
+I[5] = new Array();
+I[5][0]="Some students may commit acts of academic dishonesty because of:";
+I[5][1] = new Array();
+I[5][1][0] = new Array();
+I[5][1][0][0]='Consistent policies and expectations with respect to academic integrity from all the instructors in a department.';
+I[5][1][0][1]='';
+I[5][1][0][2] = 0;
+I[5][1][1] = new Array();
+I[5][1][1][0]='Inconsistent policies and inconsistent expectations with respect to academic integrity from different instructors in a department.';
+I[5][1][1][1]='';
+I[5][1][1][2] = 1;
+I[5][1][2] = new Array();
+I[5][1][2][0]='Consistent grading and assessment by all the instructors in a department.';
+I[5][1][2][1]='';
+I[5][1][2][2] = 0;
+I[5][1][3] = new Array();
+I[5][1][3][0]='Inconsistent style of teaching by different instructors in a department.';
+I[5][1][3][1]='';
+I[5][1][3][2] = 0;
+I[5][2] = 0;
+
+/*
+I[6] = new Array();
+I[6][0]='The act of making excuses for oneself in committing violations of academic integrity is known as:';
+I[6][1] = new Array();
+I[6][1][0] = new Array();
+I[6][1][0][0]='Self-centeredness';
+I[6][1][0][1]='...';
+I[6][1][0][2] = 0;
+I[6][1][1] = new Array();
+I[6][1][1][0]='Selfishness';
+I[6][1][1][1]='...';
+I[6][1][1][2] = 0;
+I[6][1][2] = new Array();
+I[6][1][2][0]="Self-justification";
+I[6][1][2][1]='...';
+I[6][1][2][2]= 1;
+I[6][1][3] = new Array();
+I[6][1][3][0]='Self-serving';
+I[6][1][3][1]='...';
+I[6][1][3][2] = 0;
+I[6][2] = 0;
+
+I[7] = new Array();
+I[7][0]='One common reason some students commit acts academic dishonesty is a lack of understanding of:';
+I[7][1] = new Array();
+I[7][1][0] = new Array();
+I[7][1][0][0]='What an academic institution is';
+I[7][1][0][1]='...';
+I[7][1][0][2] = 0;
+I[7][1][1] = new Array();
+I[7][1][1][0]='What academic dishonesty is';
+I[7][1][1][1]='...';
+I[7][1][1][2] = 1;
+I[7][1][2] = new Array();
+I[7][1][2][0]="Academic advising";
+I[7][1][2][1]='...';
+I[7][1][2][2]= 0;
+I[7][1][3] = new Array();
+I[7][1][3][0]='Academic pursuits';
+I[7][1][3][1]='...';
+I[7][1][3][2] = 0;
+I[7][2] = 0;
+
+I[8] = new Array();
+I[8][0]='One reason some students may commit violations of academic integrity is that they may not be aware of the possible:';
+I[8][1] = new Array();
+I[8][1][0] = new Array();
+I[8][1][0][0]='Consequences';
+I[8][1][0][1]='...';
+I[8][1][0][2] = 1;
+I[8][1][1] = new Array();
+I[8][1][1][0]='Benefits';
+I[8][1][1][1]='...';
+I[8][1][1][2] = 0;
+I[8][1][2] = new Array();
+I[8][1][2][0]="Incentives";
+I[8][1][2][1]='...';
+I[8][1][2][2]= 0;
+I[8][1][3] = new Array();
+I[8][1][3][0]='Opportunities';
+I[8][1][3][1]='...';
+I[8][1][3][2] = 0;
+I[8][2] = 0;
+
+I[9] = new Array();
+I[9][0]='Most students do not commit acts of academic dishonesty because:';
+I[9][1] = new Array();
+I[9][1][0] = new Array();
+I[9][1][0][0]='They do not know the instructor';
+I[9][1][0][1]='...';
+I[9][1][0][2] = 0;
+I[9][1][1] = new Array();
+I[9][1][1][0]='They recognize it is wrong';
+I[9][1][1][1]='...';
+I[9][1][1][2] = 1;
+I[9][1][2] = new Array();
+I[9][1][2][0]='They recognize it is beneficial.';
+I[9][1][2][1]='...';
+I[9][1][2][2] = 0;
+I[9][1][3] = new Array();
+I[9][1][3][0]='They do not know their classmates.';
+I[9][1][3][1]='...';
+I[9][1][3][2] = 0;
+I[9][2] = 0;
+*/
+Status = new Array();
+
+
+function CreateStatusArrays(){
+        for (var x=0; x<I.length; x++){
+                Status[x] = new Array();
+                Status[x][0] = 0; // Question not done yet
+                Status[x][1] = new Array(); //for tracking whether answers chosen
+                for (var y=0; y<I[x][1].length; y++){
+                        Status[x][1][y] = '0'; //Answers not chosen yet
+                }
+                Status[x][2] = 0; //Wrong tries at this question so far
+                Status[x][3] = 0; //For storing score out of one on this question
+        }
+}
+
+function UpdateQuestionStatus(QNum){
+//        Finished = true;
+        if (Status[QNum][2] <= Status[QNum][1].length-1){
+                Status[QNum][0] = 1;
+                for (var i=0; i<Status[QNum][1].length; i++){
+                        if (Status[QNum][1][i] == '0'){
+                                Status[QNum][1][i] = 'R';
+                        }
+                }
+        }		
+}
+
+function ReplaceStuff(Token, Replacement, InString){
+        var i = InString.indexOf(Token);
+        var FirstBit = '';
+        var LastBit = '';
+        while (i>-1){
+                FirstBit = InString.substring(0, i);
+                LastBit = InString.substring(i + Token.length, InString.length);
+                InString = FirstBit + Replacement + LastBit;
+                i = InString.indexOf(Token);
+
+        }
+        return InString;
+}
+
+function ChangeQ(ChangeBy){
+        var NewNum = CurrQNum + ChangeBy;
+        if ((NewNum >= 0)&&(NewNum<I.length)){
+                CurrQNum = NewNum;
+                ShowQuestion(CurrQNum);
+        }
+        var CurrScore = '';
+//		ContinuousScoring = true;
+         if ((ContinuousScoring == true)&&(EraseFeedback == false)){
+                CalculateScore();
+                var CurrScore = YourScoreIs + ' ' + Score + '%.';
+                WriteFeedback(CurrScore);
+        }	
+}
+
+function BuildQuestion(QNum){
+		QuestionCount+=1;
+        if (I[QNum][2] == 0){
+                var Temp = ReplaceStuff('[Question]', I[QNum][0], QRow);
+
+                var AnsRows = '';
+                for (var i=0; i<I[QNum][1].length; i++){
+                        TempAns = ARow;
+                        TempAns = ReplaceStuff('[ANum]', i, TempAns);
+                        TempAns = ReplaceStuff('[ALetter]', ' ' + ALetters.charAt(i) + ' ', TempAns);
+                        TempAns = ReplaceStuff('[Ans]', I[QNum][1][i][0], TempAns);
+                        AnsRows += TempAns;
+                }
+                Temp += AnsRows;
+                Temp = ReplaceStuff('[QNumber]', QNum+1, Temp);
+                Temp = ReplaceStuff('[QNum]', QNum, Temp);
+        }
+        else{
+                var Temp = ReplaceStuff('[Question]', I[QNum][0], QRow);
+                var AnsRows = '';
+                for (var i=0; i<I[QNum][1].length; i++){
+                        TempAns = MARow;
+                        TempAns = ReplaceStuff('[ANum]', i, TempAns);
+                        TempAns = ReplaceStuff('[Correct]', I[QNum][1][i][2], TempAns);
+                        TempAns = ReplaceStuff('[Ans]', I[QNum][1][i][0], TempAns);
+                        AnsRows += TempAns;
+                }
+                Temp += AnsRows;
+                Temp += CheckButton;
+                Temp = ReplaceStuff('[QNumber]', QNum+1, Temp);
+                Temp = ReplaceStuff('[QNum]', QNum, Temp);
+        }
+        return Temp;
+}
+
+
+var Finished = true;
+if (Status[i][0] == 0){Finished = true;
+QButtonsCloser = '';}
+
+
+function DisplayExercise(StuffToDisplay){
+//Build the output string
+        var OutString = '';
+        OutString += '<html>';
+        OutString += '<body  topmargin="0" background="" bgcolor="#ffffff" text="#000000" link="#000066" vlink="#99ff99">';
+        OutString += '<br><center><table border="1" cellpadding="5" cellspacing="1" width="85%">';
+        OutString += TitleCode;
+        //OutString += '<form name="form1" method="post" action=""><div align="center"><input name="Quiz" type="button" id="Quiz" onClick="MM_goToURL('parent','file:///C|/Documents%20and%20Settings/satha/quiz/samplecode.htm');return document.MM_returnValue" value="Take the Quiz"><input name="quit" type="button" id="quit" onClick="window.close()" value="quit"></div></form>';
+        OutString += '<tr><td bgcolor="#ffffff" align="center">';
+        OutString += '<font face="Arial, Helvetica, sans-serif" size="-1">';
+        OutString += StuffToDisplay;
+if(QuestionCount == 6)			
+QButtonsCloser = '';
+        OutString += QButtonsCloser;
+
+        OutString += '</font></td></tr>';
+        OutString += NavBar;
+
+        OutString += '</table></center></body></html>';
+
+        if (is.CRAPBrowser){OutString=ResolveAllURLs(OutString);}
+
+//Write it to the frame
+        BottomFrame.document.clear();
+        BottomFrame.document.open();
+        BottomFrame.document.write(OutString);
+        BottomFrame.document.close();
+
+        function MM_goToURL() { //v3.0
+  var i, args=MM_goToURL.arguments; document.MM_returnValue = false;
+  for (i=0; i<(args.length-1); i+=2) eval(args[i]+".location='"+args[i+1]+"'");
+}
+}
+
+
+function ShowAllQs(){
+        var Output = '';
+        for (var i=0; i<I.length-1; i++){
+                Output = Output + BuildQuestion(i);
+                Output = Output + '<tr><td colspan="4"><hr></td></tr>';
+        }
+        Output = Output + BuildQuestion(I.length-1);
+        Output = TableOpener + Output + TableCloser;
+        DisplayExercise(Output);
+}
+
+function ShowQuestion(QNum){
+//First, create the Q number readout at the top
+        var Readout = (QNum+1) + ' of ' + I.length;
+        while (Readout.length < 7){
+                Readout = ' ' + Readout + ' ';
+        }
+        Readout = Readout;
+
+        var Output = BuildQuestion(QNum);
+
+        Output = TableOpener + Output + TableCloser;
+
+        DisplayExercise(Readout + Output);
+
+//Mark the answers already done
+        for (i=0; i<Status[QNum][1].length; i++){
+                if (Status[QNum][1][i] == 'R'){
+                        MarkAnswer(QNum,i,true, I[QNum][1][i][1])
+                }
+                if (Status[QNum][1][i] == 'W'){
+                        MarkAnswer(QNum,i,false, I[QNum][1][i][1])
+                }
+                if (Status[QNum][1][i] == 'C'){
+                        CheckCheckbox(QNum,i);
+                }
+        }
+//Eliminate feedback from previous question
+        if (EraseFeedback == true){
+                WriteFeedback('');
+        }
+}
+
+/*function CheckMulti(QNum){
+        var TotWrong = 0;
+        var Output = '';
+        var TotAns = I[QNum][1].length;
+        for (var i=TotAns-1; i>=0; i--){
+//Find any incorrect choices
+
+                var b = eval('BottomFrame.document.QForm.A_' + QNum + '_' + i);
+
+                if (b != null){
+//if it's wrong, count it
+                        if (b.checked == true){
+                                Status[QNum][1][i] = 'C';
+                        }
+                        else{
+                                Status[QNum][1][i] = 'U';
+                        }
+                        if (((b.checked == true) && (b.value == "0"))||((b.checked == false)&&(b.value == "1"))){
+                                TotWrong++;
+                        }
+                }
+        }
+
+        if (TotWrong == 0){
+                Output = DefaultRight;
+        }
+        else{
+                Output = DefaultWrong + '<br />' + (TotAns-TotWrong) + '/' + TotAns;
+        }
+
+//If you haven't tried the question before
+        if (Status[QNum][0] == 0){
+                if (TotWrong > 0){
+                        Status[QNum][2]++;
+                }
+                if (TotWrong == 0){
+                        Status[QNum][0] = 1;
+//Calculate the score for this question as a floating-point fraction of 1
+                        Status[QNum][3] =  ((Status[QNum][1].length - Status[QNum][2]) - 1) / (Status[QNum][1].length - 1);
+//If less than zero, set to zero
+                        if (Status[QNum][3] < 0){Status[QNum][3] = 0;}
+                }
+        }
+
+//Check whether the quiz is finished
+
+        for (var i=0; i<Status.length; i++){
+                if (Status[i][0] == 0){Finished = false;}
+        }
+
+
+
+
+
+//Calculate the score if needed
+
+        if (Status[QNum][0] == 1){
+//		ContinuousScoring = true;
+                if ((Finished==true)||(ContinuousScoring==true)){
+                        CalculateScore();
+                        Output = Output + '<br />' + YourScoreIs + ' ' + Score + '%.';
+                }
+               if (Finished == true){
+                        EraseFeedback = false;
+                        var CFT = 0;
+                        for (i=0; i<I.length; i++){
+                                if (Status[i][2] == 0){
+                                        CFT++;
+                                }
+                        }
+					if(flag1 == 0)
+					{							
+		                Output += '<br />' + CorrectFirstTime + CFT + '/' + I.length;
+						updateParScore(CFT);				
+						Output += finalOutput;
+						finalOutput = Output;
+						flag1 = 1;
+					}
+					else
+					{
+						Output = finalOutput;
+					}
+
+                }
+
+        }
+
+
+
+
+
+//Show the feedback (||(EraseFeedback = false))
+        if (Output.length > 0){
+                WriteFeedback(Output);
+        }
+
+}*/
+function CheckAnswer(QNum, ANum){
+        var Output = '';
+
+        if (Output==''){
+                if (I[QNum][1][ANum][2] == 1){
+                        Output = DefaultRight +'<br>';
+                        Output += I[QNum][1][ANum][1];
+                }
+                else{
+                        Output = DefaultWrong + '<br>';
+                        Output += I[QNum][1][ANum][1];
+                }
+        }
+
+//If it's not been previously answered correctly
+        if (Status[QNum][0] == 0){
+//If it's a correct answer
+                if (I[QNum][1][ANum][2] == 1){
+                        Status[QNum][0] = 1;//Mark the Q as done
+                        Status[QNum][1][ANum] = 'R';
+                        MarkAnswer(QNum, ANum, true, I[QNum][1][ANum][1]);
+//Calculate the score for this question as a floating-point fraction of 1
+                        var PossibleWrongs = 0;
+                        for (var i=0; i<I[QNum][1].length; i++){
+                                if (I[QNum][1][i][2] == 0){
+                                        PossibleWrongs++;
+                                }
+                        }
+
+                        if (PossibleWrongs == 0){PossibleWrongs = 1;}
+
+                        Status[QNum][3] = 1 - (Status[QNum][2]/PossibleWrongs);
+
+//If less than zero, set to zero
+                        if (Status[QNum][3] < 0){Status[QNum][3] = 0;}
+                }
+                else{
+										
+                        if (Status[QNum][1][ANum] != 'W'){
+                                Status[QNum][1][ANum] = 'W';
+                                MarkAnswer(QNum, ANum, false, I[QNum][1][ANum][1]);
+                                Status[QNum][2]++; //increment wrong tries for this Q
+                        }
+                }
+        }
+
+        UpdateQuestionStatus(QNum);
+
+//Check whether the quiz is finished
+        var Finished = true;
+        for (var i=0; i<Status.length; i++){
+                if (Status[i][0] == 0){Finished = false;}
+
+        }
+
+//Calculate the score if needed
+
+        if (Status[QNum][0] == 1){
+//		ContinuousScoring = true;
+                if ((Finished==true)||(ContinuousScoring==true)){
+                        CalculateScore();
+                        Output = Output + '<br />' + YourScoreIs + ' ' + Score + '%.';
+//						Output = Output + '<br /><input type=\"
+                }
+				
+                if (Finished == true){
+                        EraseFeedback = false;
+                        var CFT = 0;
+                        for (i=0; i<I.length; i++){
+                                if (Status[i][2] == 0){
+                                        CFT++;
+                                }
+                        }
+
+					//if(flag1 == 0)
+					//{							
+						Output += '<br />' + CorrectFirstTime + CFT + '/' + I.length;
+						
+						//finalOutput = Output;
+						Output += '<br><br><a style="TEXT-DECORATION: none" href="javascript:window.close();" target="_parent"><font face="Arial, Helvetica, sans-serif" align="right" size="-1" color="#000000"><b>Quiz Completed. Close quiz window and return to tutorial.</b></font></a>'
+						/*if(flag1 == 0)
+					{
+						updateParScore(CFT);				
+						Output += finalOutput;
+						tempfinalOutput=finalOutput;
+						flag1 = 1;
+					}
+				
+					else
+					{
+						Output += tempfinalOutput;
+					}*/
+				}
+						//Output += finalOutput;
+						//finalOutput = Output;
+						//flag1 = 1;
+					//}
+					//else
+					//{
+					//	Output = finalOutput;
+					//}
+				
+                }
+ 
+        
+
+
+
+
+
+//Show the feedback
+        if (Output.length > 0){
+                WriteFeedback(Output);
+        }
+}
+
+function CalculateScore(){
+        var TriedQs = 0;
+        var TotalScore = 0;
+        for (var i=0; i<Status.length; i++){
+                if ((Status[i][2] > 0)||(Status[i][3] == 1)){
+                        TriedQs++;
+                        TotalScore += Status[i][3];
+                }
+        }
+        if (TriedQs == 0){
+                Score = 0;
+        }
+        else{
+                Score = (Math.floor(100 * (TotalScore/TriedQs)));
+        }
+
+}
+
+function MarkAnswer(QNum, ANum, Right, QTex){
+         var Mark = CorrectIndicator;
+        //var Fee = QTex	
+        if (Right == false) {Mark = IncorrectIndicator;}
+   //WriteFeedback(QTex) ;
+}
+
+function CheckCheckbox(QNum, ANum){
+        if (eval('BottomFrame.document.QForm.A_' + QNum + '_' + ANum) != null){
+                eval('BottomFrame.document.QForm.A_' + QNum + '_' + ANum).checked = true;
+        }
+}
+
+
+
+
+
+
+
+function Blank(){
+        return '<html><body>loading....</body></html>';
+}
+
+//-->
+
+//]]>
+
+</script>
+</head>
+<!--<body></body>-->
+<!--For full XHTML 1.0 compatibility, remove the border and framespacing attributes.
+These are required for proper display in current browsers, but render the document incompatible. Then, you'll need to add the appropriate Document Type Declaration; use
+the W3C XHTML 1 frameset DTD.-->
+<frameset  rows="75%,*" onLoad="StartUp()" framespacing="0" border="0" frameborder="0" >
+  <frame src="quiz.htm" frameborder="2" name="BottomFrame">
+  <frame src="javascript:parent.Blank()" frameborder="2" name="TopFrame">
+</frameset>
+<noframes>
+</noframes>
+</html>
